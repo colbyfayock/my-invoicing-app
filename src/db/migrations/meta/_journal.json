@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1726172322484,
+      "tag": "0000_early_shotgun",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1726779847667,
+      "tag": "0001_puzzling_micromacro",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1727202205311,
+      "tag": "0002_fair_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1727219119025,
+      "tag": "0003_short_silk_fever",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1727221340896,
+      "tag": "0004_modern_whiplash",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1727221603131,
+      "tag": "0005_concerned_wind_dancer",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1727221682579,
+      "tag": "0006_funny_richard_fisk",
+      "breakpoints": true
+    }
+  ]
+}
