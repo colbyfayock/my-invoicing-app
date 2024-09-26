@@ -1,5 +1,4 @@
 import {
-  ClerkProvider,
   OrganizationSwitcher,
   SignInButton,
   SignedIn,
