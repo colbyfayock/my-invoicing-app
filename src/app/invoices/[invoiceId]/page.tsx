@@ -1,57 +1,61 @@
-import { notFound } from 'next/navigation'
-import { eq, and, isNull } from 'drizzle-orm';
-import { auth } from '@clerk/nextjs/server'
+import { auth } from "@clerk/nextjs/server";
+import { and, eq, isNull } from "drizzle-orm";
+import { notFound } from "next/navigation";
 
-import { db } from '@/db';
-import { Customers, Invoices } from '@/db/schema';
-import Invoice from './Invoice';
+import { db } from "@/db";
+import { Customers, Invoices } from "@/db/schema";
+import Invoice from "./Invoice";
 
-export default async function InvoicePage({ params }: { params: { invoiceId: string; } }) {
+export default async function InvoicePage({
+  params,
+}: { params: { invoiceId: string } }) {
   const { userId, orgId } = auth();
 
-  if ( !userId ) return;
+  if (!userId) return;
 
-  const invoiceId = parseInt(params.invoiceId);
+  const invoiceId = Number.parseInt(params.invoiceId);
 
-  if ( isNaN(invoiceId) ) {
-    throw new Error('Invalid Invoice ID');
+  if (Number.isNaN(invoiceId)) {
+    throw new Error("Invalid Invoice ID");
   }
 
-  let result;
+  let result: {
+    invoices: typeof Invoices.$inferSelect;
+    customers: typeof Customers.$inferSelect;
+  };
 
-  if ( orgId ) {
-    [result] = await db.select()
+  if (orgId) {
+    [result] = await db
+      .select()
       .from(Invoices)
       .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
       .where(
-        and(
-          eq(Invoices.id, invoiceId),
-          eq(Invoices.organizationId, orgId)
-        )
+        and(eq(Invoices.id, invoiceId), eq(Invoices.organizationId, orgId)),
       )
       .limit(1);
   } else {
-    [result] = await db.select()
+    [result] = await db
+      .select()
       .from(Invoices)
       .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
       .where(
         and(
           eq(Invoices.id, invoiceId),
           eq(Invoices.userId, userId),
-          isNull(Invoices.organizationId)
-        )
+          isNull(Invoices.organizationId),
+        ),
       )
       .limit(1);
   }
-  
-  if ( !result ) {
+
+  if (!result) {
     notFound();
   }
 
   const invoice = {
     ...result.invoices,
-    customer: result.customers
-  }
+    customer: result.customers,
+  };
 
-  return <Invoice invoice={invoice} />
+  return <Invoice invoice={invoice} />;
 }

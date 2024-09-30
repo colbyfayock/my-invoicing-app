@@ -1,12 +1,12 @@
+import Container from "@/components/Container";
 import {
   OrganizationSwitcher,
   SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
-import Container from '@/components/Container';
-import Link from 'next/link';
+  UserButton,
+} from "@clerk/nextjs";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -20,9 +20,7 @@ const Header = () => {
             <span className="text-slate-300">/</span>
             <SignedIn>
               <span className="-ml-2">
-                <OrganizationSwitcher
-                  afterCreateOrganizationUrl="/dashboard"
-                />
+                <OrganizationSwitcher afterCreateOrganizationUrl="/dashboard" />
               </span>
             </SignedIn>
           </div>
@@ -37,7 +35,7 @@ const Header = () => {
         </div>
       </Container>
     </header>
-  )
-}
+  );
+};
 
 export default Header;

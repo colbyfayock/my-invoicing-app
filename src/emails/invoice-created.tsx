@@ -11,7 +11,6 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import * as React from "react";
 
 interface InvoiceCreatedEmailProps {
   invoiceId: number;
@@ -34,7 +33,10 @@ export const InvoiceCreatedEmail = ({
           You have a new invoice due for Space Jelly.
         </Text>
         <Section style={buttonContainer}>
-          <Button style={button} href={`${baseUrl}/invoices/${invoiceId}/payment`}>
+          <Button
+            style={button}
+            href={`${baseUrl}/invoices/${invoiceId}/payment`}
+          >
             Pay Invoice
           </Button>
         </Section>

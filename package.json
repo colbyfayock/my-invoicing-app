@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "biome check ./src",
+    "format": "biome check --write ./src",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "email": "email dev --dir ./src/emails"
@@ -36,13 +37,12 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.2",
     "@types/node": "^20",
     "@types/pg": "^8.11.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "drizzle-kit": "^0.24.2",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.10",
     "postcss": "^8",
     "react-email": "3.0.1",
     "tailwindcss": "^3.4.1",

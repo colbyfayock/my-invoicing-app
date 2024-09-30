@@ -100,12 +100,8 @@
           "name": "invoices_customerId_customers_id_fk",
           "tableFrom": "invoices",
           "tableTo": "customers",
-          "columnsFrom": [
-            "customerId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["customerId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -118,12 +114,7 @@
     "public.status": {
       "name": "status",
       "schema": "public",
-      "values": [
-        "open",
-        "paid",
-        "void",
-        "uncollectible"
-      ]
+      "values": ["open", "paid", "void", "uncollectible"]
     }
   },
   "schemas": {},

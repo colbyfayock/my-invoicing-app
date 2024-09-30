@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import * as Clerk from '@clerk/elements/common'
-import * as SignIn from '@clerk/elements/sign-in'
+import * as Clerk from "@clerk/elements/common";
+import * as SignIn from "@clerk/elements/sign-in";
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from "framer-motion";
 
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function SignInPage() {
   return (
@@ -29,8 +29,9 @@ export default function SignInPage() {
               className="mx-auto size-10"
               viewBox="0 0 24 24"
             >
-              <path d="M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
-              <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+              <title>Logo</title>
+              <path d="M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+              <rect width="20" height="14" x="2" y="6" rx="2" />
             </svg>
             <h1 className="mt-4 text-xl font-medium tracking-tight text-neutral-950">
               Sign in to Invoicipedia
@@ -47,13 +48,8 @@ export default function SignInPage() {
             />
             <Clerk.FieldError className="mt-2 block text-xs text-red-600" />
           </Clerk.Field>
-          <SignIn.Action
-            submit
-            asChild
-          >
-            <Button className="w-full font-bold">
-              Sign In
-            </Button>
+          <SignIn.Action submit asChild>
+            <Button className="w-full font-bold">Sign In</Button>
           </SignIn.Action>
           <div>
             <p className="mb-4 text-center text-sm/5 text-neutral-500">
@@ -67,11 +63,11 @@ export default function SignInPage() {
                   </Button>
                 </SignIn.Passkey>
               </p>
-              <Clerk.Connection
-                name="google"
-                asChild
-              >
-                <Button className="flex gap-2 w-full font-bold" variant="outline">
+              <Clerk.Connection name="google" asChild>
+                <Button
+                  className="flex gap-2 w-full font-bold"
+                  variant="outline"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -79,6 +75,7 @@ export default function SignInPage() {
                     aria-hidden
                     className="size-4"
                   >
+                    <title>Google Logo</title>
                     <g clipPath="url(#a)">
                       <path
                         fill="currentColor"
@@ -97,7 +94,7 @@ export default function SignInPage() {
             </div>
           </div>
           <p className="text-center text-sm text-neutral-500">
-            Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{" "}
             <Link
               href={String(process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL)}
               className="rounded px-1 py-0.5 text-neutral-700 outline-none hover:bg-neutral-100 focus-visible:bg-neutral-100"
@@ -118,7 +115,15 @@ export default function SignInPage() {
                 viewBox="0 0 40 40"
                 className="mx-auto size-10"
               >
-                <mask id="a" width="40" height="40" x="0" y="0" maskUnits="userSpaceOnUse">
+                <title>Logo</title>
+                <mask
+                  id="a"
+                  width="40"
+                  height="40"
+                  x="0"
+                  y="0"
+                  maskUnits="userSpaceOnUse"
+                >
                   <circle cx="20" cy="20" r="20" fill="#D9D9D9" />
                 </mask>
                 <g fill="#0A0A0A" mask="url(#a)">
@@ -156,7 +161,15 @@ export default function SignInPage() {
                 viewBox="0 0 40 40"
                 className="mx-auto size-10"
               >
-                <mask id="a" width="40" height="40" x="0" y="0" maskUnits="userSpaceOnUse">
+                <title>Logo</title>
+                <mask
+                  id="a"
+                  width="40"
+                  height="40"
+                  x="0"
+                  y="0"
+                  maskUnits="userSpaceOnUse"
+                >
                   <circle cx="20" cy="20" r="20" fill="#D9D9D9" />
                 </mask>
                 <g fill="#0A0A0A" mask="url(#a)">
@@ -200,8 +213,9 @@ export default function SignInPage() {
                 className="mx-auto size-10"
                 viewBox="0 0 24 24"
               >
-                <path d="M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
-                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                <title>Logo</title>
+                <path d="M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                <rect width="20" height="14" x="2" y="6" rx="2" />
               </svg>
               <h1 className="mt-4 text-xl font-medium tracking-tight text-neutral-950">
                 Verify Authenticator Code
@@ -232,7 +246,7 @@ export default function SignInPage() {
                       )}
                       {value}
                     </AnimatePresence>
-                    {status === 'cursor' && (
+                    {status === "cursor" && (
                       <motion.div
                         layoutId="otp-input-focus"
                         transition={{ ease: [0.2, 0.4, 0, 1], duration: 0.2 }}
@@ -244,19 +258,14 @@ export default function SignInPage() {
               />
               <Clerk.FieldError className="mt-2 block text-xs text-red-600" />
             </Clerk.Field>
-            <SignIn.Action
-              submit
-              asChild
-            >
-              <Button className="w-full font-bold">
-                Log In
-              </Button>
+            <SignIn.Action submit asChild>
+              <Button className="w-full font-bold">Log In</Button>
             </SignIn.Action>
           </SignIn.Strategy>
           <p className="text-center text-sm text-neutral-500">
-            Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{" "}
             <a
-              href="#"
+              href="/sign-up"
               className="rounded px-1 py-0.5 text-neutral-700 outline-none hover:bg-neutral-100 focus-visible:bg-neutral-100"
             >
               Sign up
@@ -265,5 +274,5 @@ export default function SignInPage() {
         </SignIn.Step>
       </SignIn.Root>
     </div>
-  )
+  );
 }

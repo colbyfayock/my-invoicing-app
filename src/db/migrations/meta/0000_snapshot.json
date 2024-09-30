@@ -51,12 +51,7 @@
     "public.status": {
       "name": "status",
       "schema": "public",
-      "values": [
-        "open",
-        "paid",
-        "void",
-        "uncollectible"
-      ]
+      "values": ["open", "paid", "void", "uncollectible"]
     }
   },
   "schemas": {},
