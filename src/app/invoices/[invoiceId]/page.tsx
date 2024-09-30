@@ -19,34 +19,40 @@ export default async function InvoicePage({
     throw new Error("Invalid Invoice ID");
   }
 
-  let result: {
+  // Displaying all invoices for public demo
+
+  let [result]: Array<{
     invoices: typeof Invoices.$inferSelect;
     customers: typeof Customers.$inferSelect;
-  };
+  }> = await db
+    .select()
+    .from(Invoices)
+    .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
+    .limit(1);
 
-  if (orgId) {
-    [result] = await db
-      .select()
-      .from(Invoices)
-      .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-      .where(
-        and(eq(Invoices.id, invoiceId), eq(Invoices.organizationId, orgId)),
-      )
-      .limit(1);
-  } else {
-    [result] = await db
-      .select()
-      .from(Invoices)
-      .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-      .where(
-        and(
-          eq(Invoices.id, invoiceId),
-          eq(Invoices.userId, userId),
-          isNull(Invoices.organizationId),
-        ),
-      )
-      .limit(1);
-  }
+  // if (orgId) {
+  //   [result] = await db
+  //     .select()
+  //     .from(Invoices)
+  //     .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
+  //     .where(
+  //       and(eq(Invoices.id, invoiceId), eq(Invoices.organizationId, orgId)),
+  //     )
+  //     .limit(1);
+  // } else {
+  //   [result] = await db
+  //     .select()
+  //     .from(Invoices)
+  //     .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
+  //     .where(
+  //       and(
+  //         eq(Invoices.id, invoiceId),
+  //         eq(Invoices.userId, userId),
+  //         isNull(Invoices.organizationId),
+  //       ),
+  //     )
+  //     .limit(1);
+  // }
 
   if (!result) {
     notFound();

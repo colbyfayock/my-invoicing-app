@@ -19,6 +19,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function createAction(formData: FormData) {
   const { userId, orgId } = auth();
 
+  // Creation disabled for demo
+  if ( userId !== process.env.ME_ID ) return;
+
   if (!userId) {
     return;
   }
@@ -69,6 +72,9 @@ export async function createAction(formData: FormData) {
 export async function updateStatusAction(formData: FormData) {
   const { userId, orgId } = auth();
 
+  // Updating disabled for demo
+  if ( userId !== process.env.ME_ID ) return;
+
   if (!userId) {
     return;
   }
@@ -105,6 +111,9 @@ export async function updateStatusAction(formData: FormData) {
 export async function deleteInvoiceAction(formData: FormData) {
   const { userId, orgId } = auth();
 
+  // Deleting disabled for demo
+  if ( userId !== process.env.ME_ID ) return;
+
   if (!userId) {
     return;
   }
@@ -136,6 +145,10 @@ export async function deleteInvoiceAction(formData: FormData) {
 }
 
 export async function createPayment(formData: FormData) {
+  // Payments disabled for demo
+  const { userId } = auth();
+  if ( userId !== process.env.ME_ID ) return;
+
   const headersList = headers();
   const origin = headersList.get("origin");
   const id = Number.parseInt(formData.get("id") as string);

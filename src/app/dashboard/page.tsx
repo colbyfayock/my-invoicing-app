@@ -25,24 +25,29 @@ export default async function Home() {
 
   if (!userId) return;
 
+  // Displaying all invoices for public demo
+
   let results: Array<{
     invoices: typeof Invoices.$inferSelect;
     customers: typeof Customers.$inferSelect;
-  }>;
+  }> = await db
+    .select()
+    .from(Invoices)
+    .innerJoin(Customers, eq(Invoices.customerId, Customers.id));
 
-  if (orgId) {
-    results = await db
-      .select()
-      .from(Invoices)
-      .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-      .where(eq(Invoices.organizationId, orgId));
-  } else {
-    results = await db
-      .select()
-      .from(Invoices)
-      .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-      .where(and(eq(Invoices.userId, userId), isNull(Invoices.organizationId)));
-  }
+  // if (orgId) {
+  //   results = await db
+  //     .select()
+  //     .from(Invoices)
+  //     .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
+  //     .where(eq(Invoices.organizationId, orgId));
+  // } else {
+  //   results = await db
+  //     .select()
+  //     .from(Invoices)
+  //     .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
+  //     .where(and(eq(Invoices.userId, userId), isNull(Invoices.organizationId)));
+  // }
 
   const invoices = results?.map(({ invoices, customers }) => {
     return {
@@ -54,6 +59,9 @@ export default async function Home() {
   return (
     <main className="h-full">
       <Container>
+        <p className="bg-yellow-100 text-sm text-yellow-800 text-center px-3 py-2 rounded-lg mb-6">
+          Displaying all invoices for public demo. Creation is disabled.
+        </p>
         <div className="flex justify-between mb-6">
           <h1 className="text-3xl font-semibold">Invoices</h1>
           <p>

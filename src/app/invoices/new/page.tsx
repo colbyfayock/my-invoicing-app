@@ -13,8 +13,14 @@ import { createAction } from "@/app/actions";
 
 export default function Home() {
   const [state, setState] = useState("ready");
+  const [error, setError] = useState<string>();
 
   async function handleOnSubmit(event: SyntheticEvent) {
+    // Submission disabled for demo
+    event.preventDefault();
+    setError('Submission disabled for demo.');
+    return;
+
     if (state === "pending") {
       event.preventDefault();
       return;
@@ -25,6 +31,11 @@ export default function Home() {
   return (
     <main className="h-full">
       <Container>
+        {error && (
+          <p className="bg-red-100 text-sm text-red-800 text-center px-3 py-2 rounded-lg mb-6">
+            { error }
+          </p>
+        )}
         <div className="flex justify-between mb-6">
           <h1 className="text-3xl font-semibold">Create Invoice</h1>
         </div>
